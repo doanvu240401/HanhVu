@@ -6,12 +6,11 @@ body {
   min-height: 100vh;
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: flex-start;
   align-items: center;
   text-align: center;
   padding: 10px;
   box-sizing: border-box;
-  position: relative;
 }
 
 h1,
@@ -62,18 +61,6 @@ h2 {
   background-color: #e60073;
 }
 
-/* Nội dung chính */
-#main-content {
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-start;
-  align-items: center;
-  width: 100%;
-  position: relative; /* Quan trọng để ảnh absolute nằm trong nó */
-  min-height: 100vh; /* Đảm bảo main-content chiếm toàn màn hình */
-  padding-top: 200px; /* Thêm khoảng trống ở trên để tránh ảnh che khuất */
-}
-
 .counter {
   margin-top: 50px;
 }
@@ -115,39 +102,38 @@ footer {
   height: auto;
 }
 
-/* --- STYLE MỚI CHO ẢNH GÓC --- */
-.corner-images-wrapper {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  display: flex; /* Sử dụng flexbox để căn chỉnh các ảnh con */
+/* Style mới cho ảnh góc - đã được tối ưu hoàn toàn */
+.header-images {
+  display: flex;
   justify-content: space-between;
-  padding: 20px 5%; /* Thêm padding để tạo khoảng cách */
-  box-sizing: border-box;
+  align-items: flex-start;
+  width: calc(100% - 20px); /* Dùng calc để đảm bảo khoảng cách an toàn */
+  max-width: 1000px;
+  margin-top: 20px;
+  flex-wrap: nowrap; /* Ngăn không cho ảnh xuống dòng */
 }
 
-.corner-image {
-  width: 25vw;
+.header-image {
+  width: 25vw; /* Tăng tỉ lệ lên một chút cho desktop */
   max-width: 300px;
   height: auto;
   border-radius: 15px;
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
 }
 
-/* 📱 Responsive cho màn hình nhỏ (Mobile/Tablet) */
+/* 📱 Responsive cho màn hình nhỏ */
 @media (max-width: 768px) {
-  .corner-images-wrapper {
-    padding: 10px 3%; /* Giảm padding trên mobile */
+  body {
+    padding: 10px;
   }
-
-  .corner-image {
-    width: 45vw;
-    max-width: 150px;
+  .header-images {
+    width: 95%; /* Giảm chiều rộng một chút để có thêm khoảng trống */
+    margin-top: 10px;
+    align-items: center;
   }
-
-  #main-content {
-    padding-top: 150px; /* Giảm khoảng trống ở trên cho mobile */
+  .header-image {
+    width: 40vw; /* Tỉ lệ cho máy tính bảng */
+    max-width: 180px;
   }
 
   h1 {
@@ -170,5 +156,39 @@ footer {
   }
   .letter p {
     font-size: 18px;
+  }
+}
+
+/* 📱 Rất nhỏ (màn hình < 480px) */
+@media (max-width: 480px) {
+  .header-images {
+    width: 98%;
+    margin-top: 5px;
+  }
+  .header-image {
+    width: 45vw; /* Tỉ lệ cho điện thoại */
+    max-width: 150px;
+  }
+
+  h1 {
+    font-size: 24px;
+  }
+  h2 {
+    font-size: 16px;
+  }
+  p {
+    font-size: 14px;
+  }
+  .love-text {
+    font-size: 24px;
+  }
+  #days-counter {
+    font-size: 24px;
+  }
+  .header img {
+    width: 40px;
+  }
+  .letter p {
+    font-size: 16px;
   }
 }
