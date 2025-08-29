@@ -5,12 +5,13 @@ body {
   color: #b30059;
   min-height: 100vh;
   display: flex;
-  flex-direction: column;
-  justify-content: flex-start;
+  flex-direction: column; /* Đặt lại thành column */
+  justify-content: center;
   align-items: center;
   text-align: center;
   padding: 10px;
   box-sizing: border-box;
+  position: relative; /* Quan trọng để các ảnh absolute bên ngoài có vị trí tương đối */
 }
 
 h1,
@@ -26,6 +27,7 @@ h2 {
   box-shadow: 0px 0px 20px rgba(255, 105, 180, 0.5);
   width: 90%;
   max-width: 400px;
+  margin: auto;
 }
 
 #login-screen h2 {
@@ -59,6 +61,14 @@ h2 {
 
 #login-screen button:hover {
   background-color: #e60073;
+}
+
+#main-content {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
 }
 
 .counter {
@@ -102,38 +112,96 @@ footer {
   height: auto;
 }
 
-/* Style mới cho ảnh góc - đã được tối ưu hoàn toàn */
-.header-images {
-  display: flex;
-  justify-content: space-between;
-  align-items: flex-start;
-  width: calc(100% - 20px); /* Dùng calc để đảm bảo khoảng cách an toàn */
-  max-width: 1000px;
-  margin-top: 20px;
-  flex-wrap: nowrap; /* Ngăn không cho ảnh xuống dòng */
+/* --- STYLE MỚI CHO ẢNH GÓC --- */
+.corner-images-wrapper {
+  /* Trên desktop, wrapper này không ảnh hưởng đến bố cục chính */
+  position: absolute; /* Đặt wrapper này làm phần tử absolute */
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%; /* Chiếm toàn bộ chiều cao của body */
+  pointer-events: none; /* Cho phép click xuyên qua wrapper */
+  z-index: 0; /* Đảm bảo nó nằm dưới nội dung chính */
 }
 
-.header-image {
-  width: 25vw; /* Tăng tỉ lệ lên một chút cho desktop */
+.corner-image {
+  position: absolute; /* Ảnh sẽ nằm theo vị trí tuyệt đối trong wrapper */
+  width: 25vw;
   max-width: 300px;
   height: auto;
   border-radius: 15px;
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+  pointer-events: all; /* Cho phép click vào ảnh */
 }
 
-/* 📱 Responsive cho màn hình nhỏ */
+.corner-image.left {
+  top: 20px; /* Vị trí từ trên xuống */
+  left: 5%; /* Vị trí từ trái sang */
+}
+
+.corner-image.right {
+  top: 20px; /* Vị trí từ trên xuống */
+  right: 5%; /* Vị trí từ phải sang */
+}
+/* --- HẾT STYLE MỚI CHO ẢNH GÓC --- */
+
+h1 {
+  font-size: 36px;
+}
+
+h2 {
+  font-size: 22px;
+}
+
+p {
+  font-size: 18px;
+}
+
+.love-text {
+  font-size: 36px;
+  font-weight: bold;
+  text-align: center;
+  margin-top: 30px;
+  color: #ff0066;
+}
+
+/* 📱 Responsive cho màn hình nhỏ (Mobile/Tablet) */
 @media (max-width: 768px) {
+  /* ẨN CÁC ẢNH ABSOLUTE TRÊN MOBILE VÀ HIỂN THỊ ẢNH MỚI */
+  .corner-images-wrapper {
+    display: none; /* Ẩn wrapper cũ trên điện thoại */
+  }
+
   body {
     padding: 10px;
   }
-  .header-images {
-    width: 95%; /* Giảm chiều rộng một chút để có thêm khoảng trống */
+
+  /* Tạo một container mới cho ảnh trên mobile */
+  #main-content::before { /* Dùng pseudo-element để chèn ảnh */
+    content: ""; /* Bắt buộc phải có content */
+    display: flex;
+    justify-content: space-between;
+    width: 100%; /* Chiếm toàn bộ chiều rộng */
     margin-top: 10px;
-    align-items: center;
+    margin-bottom: 20px; /* Khoảng cách với nội dung chính */
   }
-  .header-image {
-    width: 40vw; /* Tỉ lệ cho máy tính bảng */
+
+  /* Tạo các ảnh con bên trong pseudo-element */
+  #main-content::before img.left {
+    content: url("z6959316514017_f5a2f2e17e0f9c2c85b5d9891d145d7d.jpg");
+    width: 45vw;
     max-width: 180px;
+    height: auto;
+    border-radius: 15px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+  }
+  #main-content::before img.right {
+    content: url("z6959316515568_2f1cbdc42d160945ca3a55f441e2fb0b.jpg");
+    width: 45vw;
+    max-width: 180px;
+    height: auto;
+    border-radius: 15px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
   }
 
   h1 {
@@ -161,12 +229,10 @@ footer {
 
 /* 📱 Rất nhỏ (màn hình < 480px) */
 @media (max-width: 480px) {
-  .header-images {
-    width: 98%;
-    margin-top: 5px;
-  }
-  .header-image {
-    width: 45vw; /* Tỉ lệ cho điện thoại */
+  /* Điều chỉnh lại kích thước ảnh cho màn hình rất nhỏ */
+  #main-content::before img.left,
+  #main-content::before img.right {
+    width: 48vw;
     max-width: 150px;
   }
 
