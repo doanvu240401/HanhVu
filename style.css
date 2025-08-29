@@ -1,0 +1,194 @@
+body {
+  margin: 0;
+  font-family: "Arial", sans-serif;
+  background-color: #ffe6f0;
+  color: #b30059;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  text-align: center;
+  padding: 10px;
+  box-sizing: border-box;
+}
+
+h1,
+h2 {
+  color: #cc0066;
+}
+
+/* Khung đăng nhập */
+#login-screen {
+  background: white;
+  padding: 30px;
+  border-radius: 20px;
+  box-shadow: 0px 0px 20px rgba(255, 105, 180, 0.5);
+  width: 90%;
+  max-width: 400px;
+}
+
+#login-screen h2 {
+  margin-bottom: 20px;
+  font-size: 20px;
+  color: #cc0066;
+}
+
+#login-screen input {
+  display: block;
+  margin: 10px auto;
+  padding: 12px;
+  border-radius: 8px;
+  border: 1px solid #cc6699;
+  width: 100%;
+  font-size: 14px;
+  box-sizing: border-box;
+}
+
+#login-screen button {
+  background-color: #ff4da6;
+  color: white;
+  border: none;
+  padding: 12px 20px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 16px;
+  margin-top: 15px;
+  width: 100%;
+}
+
+#login-screen button:hover {
+  background-color: #e60073;
+}
+
+.counter {
+  margin-top: 50px;
+}
+
+#days-counter {
+  font-size: 40px;
+  color: #ff1a75;
+}
+
+.letter {
+  margin: 30px auto;
+  width: 90%;
+  max-width: 600px;
+  background: white;
+  padding: 20px;
+  border-radius: 20px;
+  box-shadow: 0px 0px 15px #ff99cc;
+}
+
+.letter p {
+  font-size: 20px;
+  line-height: 1.6;
+}
+
+footer {
+  margin-top: 40px;
+}
+
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 15px;
+  flex-wrap: wrap;
+}
+
+.header img {
+  width: 70px;
+  height: auto;
+}
+
+/* Style mới cho ảnh góc - đã được tối ưu hoàn toàn */
+.header-images {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  width: calc(100% - 20px); /* Dùng calc để đảm bảo khoảng cách an toàn */
+  max-width: 1000px;
+  margin-top: 20px;
+  flex-wrap: nowrap; /* Ngăn không cho ảnh xuống dòng */
+}
+
+.header-image {
+  width: 25vw; /* Tăng tỉ lệ lên một chút cho desktop */
+  max-width: 300px;
+  height: auto;
+  border-radius: 15px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+}
+
+/* 📱 Responsive cho màn hình nhỏ */
+@media (max-width: 768px) {
+  body {
+    padding: 10px;
+  }
+  .header-images {
+    width: 95%; /* Giảm chiều rộng một chút để có thêm khoảng trống */
+    margin-top: 10px;
+    align-items: center;
+  }
+  .header-image {
+    width: 40vw; /* Tỉ lệ cho máy tính bảng */
+    max-width: 180px;
+  }
+
+  h1 {
+    font-size: 28px;
+  }
+  h2 {
+    font-size: 18px;
+  }
+  p {
+    font-size: 16px;
+  }
+  .love-text {
+    font-size: 28px;
+  }
+  #days-counter {
+    font-size: 30px;
+  }
+  .header img {
+    width: 50px;
+  }
+  .letter p {
+    font-size: 18px;
+  }
+}
+
+/* 📱 Rất nhỏ (màn hình < 480px) */
+@media (max-width: 480px) {
+  .header-images {
+    width: 98%;
+    margin-top: 5px;
+  }
+  .header-image {
+    width: 45vw; /* Tỉ lệ cho điện thoại */
+    max-width: 150px;
+  }
+
+  h1 {
+    font-size: 24px;
+  }
+  h2 {
+    font-size: 16px;
+  }
+  p {
+    font-size: 14px;
+  }
+  .love-text {
+    font-size: 24px;
+  }
+  #days-counter {
+    font-size: 24px;
+  }
+  .header img {
+    width: 40px;
+  }
+  .letter p {
+    font-size: 16px;
+  }
+}
