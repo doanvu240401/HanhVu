@@ -5,13 +5,13 @@ body {
   color: #b30059;
   min-height: 100vh;
   display: flex;
-  flex-direction: column; /* Đặt lại thành column */
+  flex-direction: column;
   justify-content: center;
   align-items: center;
   text-align: center;
   padding: 10px;
   box-sizing: border-box;
-  position: relative; /* Quan trọng để các ảnh absolute bên ngoài có vị trí tương đối */
+  position: relative;
 }
 
 h1,
@@ -27,7 +27,6 @@ h2 {
   box-shadow: 0px 0px 20px rgba(255, 105, 180, 0.5);
   width: 90%;
   max-width: 400px;
-  margin: auto;
 }
 
 #login-screen h2 {
@@ -63,12 +62,16 @@ h2 {
   background-color: #e60073;
 }
 
+/* Nội dung chính */
 #main-content {
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: flex-start;
   align-items: center;
   width: 100%;
+  position: relative; /* Quan trọng để ảnh absolute nằm trong nó */
+  min-height: 100vh; /* Đảm bảo main-content chiếm toàn màn hình */
+  padding-top: 200px; /* Thêm khoảng trống ở trên để tránh ảnh che khuất */
 }
 
 .counter {
@@ -114,94 +117,37 @@ footer {
 
 /* --- STYLE MỚI CHO ẢNH GÓC --- */
 .corner-images-wrapper {
-  /* Trên desktop, wrapper này không ảnh hưởng đến bố cục chính */
-  position: absolute; /* Đặt wrapper này làm phần tử absolute */
+  position: absolute;
   top: 0;
   left: 0;
   width: 100%;
-  height: 100%; /* Chiếm toàn bộ chiều cao của body */
-  pointer-events: none; /* Cho phép click xuyên qua wrapper */
-  z-index: 0; /* Đảm bảo nó nằm dưới nội dung chính */
+  display: flex; /* Sử dụng flexbox để căn chỉnh các ảnh con */
+  justify-content: space-between;
+  padding: 20px 5%; /* Thêm padding để tạo khoảng cách */
+  box-sizing: border-box;
 }
 
 .corner-image {
-  position: absolute; /* Ảnh sẽ nằm theo vị trí tuyệt đối trong wrapper */
   width: 25vw;
   max-width: 300px;
   height: auto;
   border-radius: 15px;
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
-  pointer-events: all; /* Cho phép click vào ảnh */
-}
-
-.corner-image.left {
-  top: 20px; /* Vị trí từ trên xuống */
-  left: 5%; /* Vị trí từ trái sang */
-}
-
-.corner-image.right {
-  top: 20px; /* Vị trí từ trên xuống */
-  right: 5%; /* Vị trí từ phải sang */
-}
-/* --- HẾT STYLE MỚI CHO ẢNH GÓC --- */
-
-h1 {
-  font-size: 36px;
-}
-
-h2 {
-  font-size: 22px;
-}
-
-p {
-  font-size: 18px;
-}
-
-.love-text {
-  font-size: 36px;
-  font-weight: bold;
-  text-align: center;
-  margin-top: 30px;
-  color: #ff0066;
 }
 
 /* 📱 Responsive cho màn hình nhỏ (Mobile/Tablet) */
 @media (max-width: 768px) {
-  /* ẨN CÁC ẢNH ABSOLUTE TRÊN MOBILE VÀ HIỂN THỊ ẢNH MỚI */
   .corner-images-wrapper {
-    display: none; /* Ẩn wrapper cũ trên điện thoại */
+    padding: 10px 3%; /* Giảm padding trên mobile */
   }
 
-  body {
-    padding: 10px;
-  }
-
-  /* Tạo một container mới cho ảnh trên mobile */
-  #main-content::before { /* Dùng pseudo-element để chèn ảnh */
-    content: ""; /* Bắt buộc phải có content */
-    display: flex;
-    justify-content: space-between;
-    width: 100%; /* Chiếm toàn bộ chiều rộng */
-    margin-top: 10px;
-    margin-bottom: 20px; /* Khoảng cách với nội dung chính */
-  }
-
-  /* Tạo các ảnh con bên trong pseudo-element */
-  #main-content::before img.left {
-    content: url("z6959316514017_f5a2f2e17e0f9c2c85b5d9891d145d7d.jpg");
+  .corner-image {
     width: 45vw;
-    max-width: 180px;
-    height: auto;
-    border-radius: 15px;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+    max-width: 150px;
   }
-  #main-content::before img.right {
-    content: url("z6959316515568_2f1cbdc42d160945ca3a55f441e2fb0b.jpg");
-    width: 45vw;
-    max-width: 180px;
-    height: auto;
-    border-radius: 15px;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+
+  #main-content {
+    padding-top: 150px; /* Giảm khoảng trống ở trên cho mobile */
   }
 
   h1 {
@@ -224,37 +170,5 @@ p {
   }
   .letter p {
     font-size: 18px;
-  }
-}
-
-/* 📱 Rất nhỏ (màn hình < 480px) */
-@media (max-width: 480px) {
-  /* Điều chỉnh lại kích thước ảnh cho màn hình rất nhỏ */
-  #main-content::before img.left,
-  #main-content::before img.right {
-    width: 48vw;
-    max-width: 150px;
-  }
-
-  h1 {
-    font-size: 24px;
-  }
-  h2 {
-    font-size: 16px;
-  }
-  p {
-    font-size: 14px;
-  }
-  .love-text {
-    font-size: 24px;
-  }
-  #days-counter {
-    font-size: 24px;
-  }
-  .header img {
-    width: 40px;
-  }
-  .letter p {
-    font-size: 16px;
   }
 }
